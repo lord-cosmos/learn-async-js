@@ -1,1 +1,37 @@
 Explain the code execution based on the order of the messages logged in src/quiz/promise-2darray.txt.
+
+Ans: 
+
+output :
+
+❯ node src/quiz/promise-2darray.js
+Sum called ... 
+returning from sum
+Promise { <pending> }
+Sum called ... 
+rejecting ... 
+returning from sum
+Promise { <rejected> 'BAD INPUT: Expected array as input' }
+node:internal/process/promises:289
+            triggerUncaughtException(err, true /* fromPromise */);
+
+Explanation : 
+
+The issue in the code is that sumPromise1 and sumPromise2 are promises, and 
+when you log them to the console directly after calling sum2DArray, 
+you're actually logging the promises themselves, not the resolved values. Promises are asynchronous, 
+so you need to wait for them to resolve before accessing their values.
+
+
+Code changed in the file.
+
+Output: 
+
+Sum called ... 
+returning from sum
+Sum called ... 
+rejecting ... 
+returning from sum
+BAD INPUT: Expected array as input
+resolving ... 
+45
